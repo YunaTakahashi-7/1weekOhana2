@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Boss
   - Enemy
-  - Sword
+  - Undefined
+  - RZone
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] LayerMask blockLayer;
     public enum DIRECTION_TYPE
     {
         STOP,
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
     DIRECTION_TYPE directin = DIRECTION_TYPE.STOP;
     Rigidbody2D Rigidbody2D;
     float speed;
+    float jumpPower = 250;
 
     Animator animator;
 
@@ -40,6 +43,16 @@ public class PlayerController : MonoBehaviour
         {
             directin = DIRECTION_TYPE.LEFT;
         }
+
+        if(Input.GetKeyDown("space"))
+        {
+            Jump();
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
     }
     void FixedUpdate()
     {
@@ -58,5 +71,26 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         Rigidbody2D.velocity = new Vector2(speed, Rigidbody2D.velocity.y);
+    }
+
+    void Jump()
+    {
+        Rigidbody2D.AddForce(Vector2.up * jumpPower);
+        animator.SetTrigger("Jump");
+
+    }
+
+
+    void Attack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("痛い");
+        }
     }
 }

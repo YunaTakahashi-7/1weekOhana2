@@ -55,7 +55,7 @@ public class BossMove : MonoBehaviour
             transform.position += new Vector3(60f, 20f, 0) * Time.deltaTime;
             count++;
         }
-        Debug.Log(time);
+        // Debug.Log(time);
         count = 0;
     }
     // private float time = 0;

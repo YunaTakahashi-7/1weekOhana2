@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public int PlayerHp = 100;
+    public static int PlayerHp = 100;
     bool Muteki;
     [SerializeField] LayerMask blockLayer;
     public enum DIRECTION_TYPE

@@ -19,7 +19,7 @@ public class Bosshp : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         Debug.Log("ぶつかった");
         if (col.gameObject.name == "Player")

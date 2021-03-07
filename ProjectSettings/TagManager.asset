@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Boss
   - Enemy
+  - Undefined
+  - RZone
   layers:
   - Default
   - TransparentFX

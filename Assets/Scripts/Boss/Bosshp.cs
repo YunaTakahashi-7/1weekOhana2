@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bosshp : MonoBehaviour
 {
-    public int bosshp = 2;
+    public int bosshp = 20;
     private int halfhp;
     
     void Start()
@@ -19,12 +19,10 @@ public class Bosshp : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("ぶつかった");
-        if (col.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player")
         {
-            Debug.Log("ppp");
             bosshp--;
         }
     }

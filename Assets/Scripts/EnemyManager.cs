@@ -37,4 +37,14 @@ public class EnemyManager : MonoBehaviour
         }
         rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Damager damager = collision.GetComponent<Damager>();
+        if(damager != null)
+        {
+            Debug.Log("aaaa");
+        }
+    }
+
 }

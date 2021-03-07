@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D Rigidbody2D;
     float speed;
     float jumpPower = 250;
+    public GameObject sword;
 
     Animator animator;
 
     private void Start()
     {
+        sword.SetActive(false);
         Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour
             directin = DIRECTION_TYPE.LEFT;
         }
 
-        if(Input.GetKeyDown("space"))
+        if(IsGround() && Input.GetKeyDown("space"))
         {
             Jump();
         }
@@ -80,17 +82,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    bool IsGround()
+    {
+        //始点と終点を作成
+        Vector3 leftStartPoint = transform.position - Vector3.right * 0.2f;
+        Vector3 rightStartPoint = transform.position + Vector3.right * 0.2f;
+        Vector3 endPoint = transform.position - Vector3.up * 0.1f;
+        Debug.DrawLine(leftStartPoint, endPoint);
+        Debug.DrawLine(rightStartPoint, endPoint);
+        return Physics2D.Linecast(leftStartPoint,endPoint,blockLayer)
+            || Physics2D.Linecast(rightStartPoint, endPoint, blockLayer);
+    }
+
 
     void Attack()
     {
+        sword.SetActive(true);
         animator.SetTrigger("Attack");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        Damager damager = collision.GetComponent<Damager>();
+        if (damager != null)
         {
-            Debug.Log("痛い");
+            animator.SetTrigger("Damage");
+            Debug.Log("cccc");
         }
     }
 }

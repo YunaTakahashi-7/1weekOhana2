@@ -6,6 +6,7 @@ public class Bosshp : MonoBehaviour
 {
     public int bosshp = 20;
     private int halfhp;
+    public GameObject Zangeki;
     
     void Start()
     {
@@ -21,8 +22,11 @@ public class Bosshp : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.CompareTag("Sword") == true)
         {
+            Instantiate(Zangeki, transform.position, transform.rotation);
+            transform.position += new Vector3(0.3f, 0.3f, 0);
+
             bosshp--;
         }
     }

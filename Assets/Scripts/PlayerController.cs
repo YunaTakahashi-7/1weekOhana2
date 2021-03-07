@@ -117,8 +117,6 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Enemy") == true)
         {
             PlayerHp--;
-            
-
             if (PlayerHp > 0)
             {
                 Muteki = true;
@@ -127,9 +125,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetTrigger("Damage");
                     GetComponent<Collider2D>().enabled = false;
                     StartCoroutine("MutekiTime");
-
                 }
-
             }
 
             if (PlayerHp == 0)

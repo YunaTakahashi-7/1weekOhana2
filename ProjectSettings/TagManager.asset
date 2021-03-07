@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Undefined
   - RZone
+  - Sword
   layers:
   - Default
   - TransparentFX

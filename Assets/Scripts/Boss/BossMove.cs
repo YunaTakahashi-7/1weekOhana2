@@ -4,50 +4,43 @@ using UnityEngine;
 
 public class BossMove : MonoBehaviour
 {
+    private float time = 0;
+    private bool uemove = true;
     
     void Start()
     {
-        StartCoroutine ("Move");
+        // StartCoroutine ("Move", 3);
     }
 
     void Update()
     {
+        time = Time.deltaTime;
         normalmove();
     }
 
-    private IEnumerator Move() 
-    { 
-    Debug.Log ("1");
-    shitamove();
-
-    yield return new WaitForSeconds (0.2f); //待つ
-    Debug.Log ("2");
-    shitamove();
-
-    yield return new WaitForSeconds (0.2f); //待つ
-    shitamove(); 
-    Debug.Log ("3");
-
-    yield return new WaitForSeconds (0.2f); //待つ
-    shitamove();
-    }
-
     private void shitamove(){
-        Transform myTransform = this.transform;
-        myTransform.Translate (-0.2f, -0.2f, 0);
+        for(int i = 0; i < 10; i++)
+        transform.position -= new Vector3(0.01f, 0, 0);
     }
 
     private void normalmove(){
         Transform myTransform = this.transform;
-        myTransform.Translate (0, 0.01f, 0);
+        if(uemove){
+            transform.position += new Vector3(0, 0.01f, 0);
+        }else{
+            transform.position -= new Vector3(0, 0.01f, 0);
+        }
     }
 
-    void OnCollisionStay2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("ぶつかった");
-        if (col.gameObject.tag == "RZone")
+        if (collision.gameObject.tag == "RZone")
         {
-            Debug.Log("ppp");
+            if(uemove){
+                uemove = false;
+            }else{
+                uemove = true;
+            }
         }
     }
 }

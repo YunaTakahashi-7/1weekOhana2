@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public int EnemyHp = 10;
+    public GameObject Zangeki;
     public enum DIRECTION_TYPE
     {
         STOP,
@@ -40,11 +42,20 @@ public class EnemyManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Damager damager = collision.GetComponent<Damager>();
-        if(damager != null)
+
+        if (collision.CompareTag("Sword") == true)
         {
-            Debug.Log("aaaa");
+            Instantiate(Zangeki, transform.position, transform.rotation);
+            transform.position += new Vector3(0.3f, 0.3f, 0);
+
+            EnemyHp--;
+            if (EnemyHp == 0)
+            {
+                Destroy(this.gameObject);
+                // 爆破
+            }
         }
+        
     }
 
 }

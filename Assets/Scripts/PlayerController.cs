@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public int PlayerHp = 100;
+    bool Muteki;
     [SerializeField] LayerMask blockLayer;
     public enum DIRECTION_TYPE
     {
@@ -97,17 +99,57 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        sword.SetActive(true);
+        
         animator.SetTrigger("Attack");
     }
+    void Setting()
+    {
+        sword.SetActive(true);
+        
+    }
+    void EndSetting()
+    {
+        sword.SetActive(false) ;
 
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Damager damager = collision.GetComponent<Damager>();
-        if (damager != null)
+        if (collision.CompareTag("Enemy") == true)
         {
-            animator.SetTrigger("Damage");
-            Debug.Log("cccc");
+            PlayerHp--;
+            
+
+            if (PlayerHp > 0)
+            {
+                Muteki = true;
+                if (Muteki == true)
+                {
+                    animator.SetTrigger("Damage");
+                    GetComponent<Collider2D>().enabled = false;
+                    StartCoroutine("MutekiTime");
+
+                }
+
+            }
+
+            if (PlayerHp == 0)
+            {
+                Destroy(this.gameObject); // gameover処理かく
+                // gameover
+
+            }
         }
+
     }
+    IEnumerator MutekiTime()
+    {
+        
+        // 1秒間処理を止める
+        yield return new WaitForSeconds(1.5f);
+        GetComponent<Collider2D>().enabled = true;
+
+        Muteki = false;
+        
+    }
+    
 }

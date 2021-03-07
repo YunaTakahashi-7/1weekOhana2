@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7201653564896162473}
   - component: {fileID: 7201653564896162478}
   - component: {fileID: 7201653564896162479}
+  - component: {fileID: 6692108209146876439}
   m_Layer: 0
   m_Name: zanngeki
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 04d731ba41ce034479a3a4a37346e9b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,3 +102,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6692108209146876439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201653564896162476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f90eb664196d574587b9e0f7dcba28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

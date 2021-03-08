@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField] LayerMask blockLayer;
     public int EnemyHp = 10;
     public GameObject Zangeki;
     public enum DIRECTION_TYPE
@@ -21,6 +22,16 @@ public class EnemyManager : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         direction = DIRECTION_TYPE.LEFT;
     }
+
+    private void Update()
+    {
+        if(!IsGround())
+        {
+            ChangeDirection();
+        }
+    }
+
+
     void FixedUpdate()
     {
         switch (direction)
@@ -29,7 +40,7 @@ public class EnemyManager : MonoBehaviour
                 speed = 0;
                 break;
             case DIRECTION_TYPE.RIGHT:
-                speed = 3;
+                speed = 1;
                 transform.localScale = new Vector3(1, 1, 1);
                 break;
             case DIRECTION_TYPE.LEFT:
@@ -55,7 +66,27 @@ public class EnemyManager : MonoBehaviour
                 // 爆破
             }
         }
-        
+
     }
+    bool IsGround()
+    {
+        Vector3 startVec = transform.position + transform.right * 0.5f * transform.localScale.x;
+        Vector3 endVec = startVec - transform.up * 0.5f;
+        Debug.DrawLine(startVec, endVec);
+        return Physics2D.Linecast(startVec,endVec, blockLayer);
+    }
+
+    void ChangeDirection()
+    {
+        if (direction == DIRECTION_TYPE.RIGHT)
+        {
+            direction = DIRECTION_TYPE.LEFT;
+        }
+        else if (direction == DIRECTION_TYPE.LEFT)
+        {
+            direction = DIRECTION_TYPE.RIGHT;
+        }
+    }
+
 
 }

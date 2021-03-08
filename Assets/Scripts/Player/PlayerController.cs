@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
-    public static int PlayerHp = 100;
+    public static int PlayerHp = 10;
     bool Muteki;
     [SerializeField] LayerMask blockLayer;
     public enum DIRECTION_TYPE

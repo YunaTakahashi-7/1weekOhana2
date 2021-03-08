@@ -152,6 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec48dfc3725b9540aabedd400af23d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  EnemyHp: 10
+  Zangeki: {fileID: 7201653564896162476, guid: eaaa60b7a50ca05499d1fc974933ac89, type: 3}
 --- !u!95 &246678903882887835
 Animator:
   serializedVersion: 3

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public GameObject sword;
 
     Animator animator;
+
+    public GameObject SceneToGame;
 
     private void Start()
     {
@@ -132,7 +135,11 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(this.gameObject); // gameover処理かく
                 // gameover
-
+                if(SceneToGame.activeSelf){
+                    SceneManager.LoadScene ("GameScene");
+                }else{
+                    SceneManager.LoadScene ("BossScene");
+                }
             }
         }
 

@@ -9,55 +9,73 @@ public class BossMove : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine (MoveSet ());
-        // InvokeRepeating("LaunchProjectile", 2.0f, 0.3f);
+        // StartCoroutine (MoveSet ());
     }
-
-    // void LaunchProjectile()
-    // {
-    //     transform.position += new Vector3(0, 1f, 0);
-    // }
 
     void Update()
     {
         time += Time.deltaTime;
-        if(time >= 16.5f){
+        if(time < 2){
+            transform.position += new Vector3(0, 1.1f, 0) * Time.deltaTime;
+        }else if(time < 5){
+            transform.position += new Vector3(0, -1.2f, 0) * Time.deltaTime;
+        }else if(time < 8){
+            transform.position += new Vector3(0, 1.2f, 0) * Time.deltaTime;
+        }else if(time < 11){
+            transform.position += new Vector3(-4.0f, -1.2f, 0) * Time.deltaTime;
+        }else if(time < 14){
+            transform.position += new Vector3(0, 1.2f, 0) * Time.deltaTime;
+        }else if(time < 16){
+            transform.position += new Vector3(0, -1.1f, 0) * Time.deltaTime;
+        }else if(time < 17.5){
+            transform.position += new Vector3(4.0f, -1.2f, 0) * Time.deltaTime;
+        }else if(time < 19){
+            transform.position += new Vector3(4.0f, 1.2f, 0) * Time.deltaTime;
+        }else if(time < 21){
+            transform.position += new Vector3(-6.0f, 0, 0) * Time.deltaTime;
+        }else if(time < 23){
+            transform.position += new Vector3(6.0f, 0, 0) * Time.deltaTime;
+        }else{
             time = 0;
-            StartCoroutine (MoveSet ());
         }
+        // if(time >= 16.5f){
+        //     time = 0;
+        //     StartCoroutine (MoveSet ());
+        // }
     }
 
-    private IEnumerator MoveSet()
-    {
-        while(count < 10){
-            yield return new WaitForSeconds (0.2f);
-            transform.position += new Vector3(0, 20f, 0) * Time.deltaTime;
-            count++;
-        }
-        while(count < 30){
-            yield return new WaitForSeconds (0.2f);
-            transform.position += new Vector3(0, -20f, 0) * Time.deltaTime;
-            count++;
-        }
-        while(count < 50){
-            yield return new WaitForSeconds (0.2f);
-            transform.position += new Vector3(0, 20f, 0) * Time.deltaTime;
-            count++;
-        }
-        yield return new WaitForSeconds (1f);
-        while(count < 75){
-            yield return new WaitForSeconds (0.1f);
-            transform.position += new Vector3(-60f, -20f, 0) * Time.deltaTime;
-            count++;
-        }
-        while(count < 95){
-            yield return new WaitForSeconds (0.1f);
-            transform.position += new Vector3(60f, 20f, 0) * Time.deltaTime;
-            count++;
-        }
-        // Debug.Log(time);
-        count = 0;
-    }
+    // private IEnumerator MoveSet()
+    // {
+    //     while(count < 10){
+    //         yield return new WaitForSeconds (0.2f);
+    //         transform.position += new Vector3(0, 20f, 0) * Time.deltaTime;
+    //         count++;
+    //     }
+    //     while(count < 30){
+    //         yield return new WaitForSeconds (0.2f);
+    //         transform.position += new Vector3(0, -20f, 0) * Time.deltaTime;
+    //         count++;
+    //     }
+    //     while(count < 50){
+    //         yield return new WaitForSeconds (0.2f);
+    //         transform.position += new Vector3(0, 20f, 0) * Time.deltaTime;
+    //         count++;
+    //     }
+    //     yield return new WaitForSeconds (1f);
+    //     while(count < 75){
+    //         yield return new WaitForSeconds (0.1f);
+    //         transform.position += new Vector3(-60f, -20f, 0) * Time.deltaTime;
+    //         count++;
+    //     }
+    //     while(count < 95){
+    //         yield return new WaitForSeconds (0.1f);
+    //         transform.position += new Vector3(60f, 20f, 0) * Time.deltaTime;
+    //         count++;
+    //     }
+    //     // Debug.Log(time);
+    //     count = 0;
+    // }
+
     // private float time = 0;
     // private bool uemove = true;
     

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Bosshp : MonoBehaviour
 {
-    public int bosshp = 20;
+    public static int bosshp = 150;
     private int halfhp;
     public GameObject Zangeki;
     private SpriteRenderer renderer;　//点滅用
     private bool on_damage = false; //無敵タイム用
 
-    public GameObject Expro; //爆破エフェクト
+    //public GameObject Expro; //爆破エフェクト
     private bool bakuha = true;
     
     void Start()
@@ -24,7 +24,7 @@ public class Bosshp : MonoBehaviour
         if(bosshp == 0){
             //爆発エフェクト
             if(bakuha){
-                Instantiate(Expro, transform.position, transform.rotation);
+                //Instantiate(Expro, transform.position, transform.rotation);
                 Debug.Log("しまづさんを倒した");
                 bakuha = false;
             }

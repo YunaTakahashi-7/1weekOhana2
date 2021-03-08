@@ -18,7 +18,11 @@ public class Bosshp : MonoBehaviour
 
     void Update()
     {
-        if(bosshp <= halfhp){
+        if(bosshp == 0){
+            Debug.Log("しまづさんを倒した");
+            //爆発エフェクト入れる
+        }
+        else if(bosshp <= halfhp){
             transform.Rotate(new Vector3(0, 0, 3));
         }
         // ダメージフラグがtrueで有れば点滅

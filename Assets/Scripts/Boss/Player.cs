@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public float life;
     public float maxLife;
-    //関係ないけど、仮置きのフラグ(Bullet.csで使う)
+    //Bullet.csで使うフラグ
     public static bool onright;
  
     protected PlayerGauge playerGauge;

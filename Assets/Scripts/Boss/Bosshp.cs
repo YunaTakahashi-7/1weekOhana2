@@ -8,7 +8,10 @@ public class Bosshp : MonoBehaviour
     private int halfhp;
     public GameObject Zangeki;
     private SpriteRenderer renderer;　//点滅用
-    private bool on_damage = false;
+    private bool on_damage = false; //無敵タイム用
+
+    public GameObject Expro; //爆破エフェクト
+    private bool bakuha = true;
     
     void Start()
     {
@@ -19,8 +22,12 @@ public class Bosshp : MonoBehaviour
     void Update()
     {
         if(bosshp == 0){
-            Debug.Log("しまづさんを倒した");
-            //爆発エフェクト入れる
+            //爆発エフェクト
+            if(bakuha){
+                Instantiate(Expro, transform.position, transform.rotation);
+                Debug.Log("しまづさんを倒した");
+                bakuha = false;
+            }
         }
         else if(bosshp <= halfhp){
             transform.Rotate(new Vector3(0, 0, 3));

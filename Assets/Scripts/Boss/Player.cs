@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float life;
     public float maxLife;
+    //関係ないけど、仮置きのフラグ(Bullet.csで使う)
+    public static bool onright;
  
     protected PlayerGauge playerGauge;
  
@@ -14,6 +16,15 @@ public class Player : MonoBehaviour
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this);
         life = PlayerController.PlayerHp;
+    }
+
+    private void Update()
+    {
+        if(gameObject.transform.localScale.x >= 0){
+            onright = true;
+        }else{
+            onright = false;
+        }
     }
  
     public void Damage()

@@ -6,6 +6,8 @@ public class Boss : MonoBehaviour
 {
     public float life;
     public float maxLife;
+
+    private bool on_damage = false;
  
     protected BossGauge bossGauge;
  
@@ -22,9 +24,17 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet") == true)
+        if (collision.CompareTag("Bullet") == true && !on_damage)
         {
             Damage();
+            on_damage = true;
+            StartCoroutine("WaitForIt");
         }
+    }
+
+    IEnumerator WaitForIt()
+    {
+        yield return new WaitForSeconds(1);
+        on_damage = false;
     }
 }

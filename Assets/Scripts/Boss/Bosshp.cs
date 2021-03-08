@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bosshp : MonoBehaviour
 {
-    public static int bosshp = 150;
+    public static int bosshp = 20;
     private int halfhp;
     public GameObject Zangeki;
     private SpriteRenderer renderer;　//点滅用

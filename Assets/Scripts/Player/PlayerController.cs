@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
                 if(SceneToGame.activeSelf){
                     SceneManager.LoadScene ("GameScene");
                 }else{
-                    SceneManager.LoadScene ("BossScene");
+                    // SceneManager.LoadScene ("BossScene"); //倒せないから一旦オフ
                 }
             }
         }

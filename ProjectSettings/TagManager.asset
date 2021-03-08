@@ -9,6 +9,7 @@ TagManager:
   - Undefined
   - RZone
   - Sword
+  - Bullet
   layers:
   - Default
   - TransparentFX

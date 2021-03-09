@@ -29,6 +29,11 @@ public class EnemyManager : MonoBehaviour
         {
             ChangeDirection();
         }
+        if (transform.position.y < -10.0f)
+        {
+            Destroy(this.gameObject); // gameover処理かく
+        }
+
     }
 
 

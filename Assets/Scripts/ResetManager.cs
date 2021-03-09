@@ -10,19 +10,17 @@ public class ResetManager : MonoBehaviour
     AudioSource audioSource;
     public AudioClip gameover;
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         gameOverText.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (PlayerController.Reset)
         {
-            audioSource.PlayOneShot(gameover);
+            AudioSource.PlayClipAtPoint(gameover, transform.position);
             gameOverText.SetActive(true);
 
 

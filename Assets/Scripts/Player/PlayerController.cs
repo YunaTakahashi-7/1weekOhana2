@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //PlayerDeathSE();
         float x = Input.GetAxis("Horizontal");
         animator.SetFloat("speed", Mathf.Abs(x));
 
@@ -115,6 +116,15 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         Rigidbody2D.velocity = new Vector2(speed, Rigidbody2D.velocity.y);
+    }
+
+    void PlayerDeathSE()
+    {
+        if (transform.position.y < -8.0f)
+        {
+            //audioSource.PlayOneShot(gameover);
+        }
+
     }
 
     void Jump()

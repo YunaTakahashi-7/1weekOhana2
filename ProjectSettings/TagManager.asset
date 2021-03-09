@@ -10,6 +10,7 @@ TagManager:
   - RZone
   - Sword
   - Bullet
+  - Line
   layers:
   - Default
   - TransparentFX

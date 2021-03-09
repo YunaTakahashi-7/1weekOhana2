@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public static bool Reset;
+    public GameObject Main;
+    public GameObject Death;
+    public GameObject Damage;
     public static int PlayerHp = 10;
     bool Muteki;
     [SerializeField] LayerMask blockLayer;
+    [SerializeField] GameObject[] Damages; // 揺らすオブジェクト
+    [SerializeField] float duration;            // 揺れる時間
+    [SerializeField] float strength = 1f;       // 揺れる幅
+    [SerializeField] int vibrato = 10;          // 揺れる回数
+    [SerializeField] float randomness = 90f;    // Indicates how much the shake will be random (0 to 180 ...
+    [SerializeField] bool snapping = false;     // If TRUE the tween will smoothly snap all values to integers. 
+    [SerializeField] bool fadeOut = true;       // 徐々に揺れが収まるか否か
+
     public enum DIRECTION_TYPE
     {
         STOP,
@@ -27,7 +39,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        PlayerHp = 10;
+        Reset = false;
         sword.SetActive(false);
+        Death.SetActive(false);
+        Damage.SetActive(false);
         Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -59,6 +75,15 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Attack();
+        }
+
+        if(transform.position.y < -10.0f)
+        {
+            Reset = true;
+            Death.SetActive(true);
+            Main.SetActive(false);
+            Destroy(this.gameObject); // gameover処理かく
+
         }
     }
     void FixedUpdate()
@@ -126,33 +151,60 @@ public class PlayerController : MonoBehaviour
                 if (Muteki == true)
                 {
                     animator.SetTrigger("Damage");
+                    Damage.SetActive(true);
+                    Main.SetActive(false);
                     GetComponent<Collider2D>().enabled = false;
+                    Shake(Damages);
                     StartCoroutine("MutekiTime");
                 }
             }
 
             if (PlayerHp == 0)
             {
+                Death.SetActive(true);
+                Main.SetActive(false);
+                Reset = true;
                 Destroy(this.gameObject); // gameover処理かく
+
                 // gameover
-                if(SceneToGame.activeSelf){
+                
+                /*if (SceneToGame.activeSelf){
                     SceneManager.LoadScene ("GameScene");
                 }else{
                     SceneManager.LoadScene ("BossScene");
                 }
+                */
             }
         }
 
     }
     IEnumerator MutekiTime()
     {
-        
         // 1秒間処理を止める
         yield return new WaitForSeconds(1.5f);
+        Damage.SetActive(false);
+        Main.SetActive(true);
         GetComponent<Collider2D>().enabled = true;
 
         Muteki = false;
-        
+
     }
-    
+
+
+    // DOTweenでオブジェクトをゆらす
+    private void Shake(GameObject[] Damages)
+    {
+        foreach (var PlayerDamage in Damages)
+        {
+            PlayerDamage.transform.DOShakePosition(
+                duration, strength, vibrato, randomness, snapping, fadeOut);
+
+
+            // DOShakePosition は duration 以外の引数はオプション（指定しなければデフォルト値使用）
+            // なので、以下のようにシンプルに書くこともできる
+            // shakeObject.transform.DOShakePosition ( duration );
+        }
+    }
+
+
 }

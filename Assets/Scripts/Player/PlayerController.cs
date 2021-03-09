@@ -6,6 +6,15 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+
+    AudioSource audioSource;
+    public AudioClip Attack1;
+    public AudioClip Attack2;
+    public AudioClip damage;
+    //public AudioClip gameover;
+    public AudioClip jump;
+
+
     public static bool Reset;
     public GameObject Main;
     public GameObject Death;
@@ -39,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         PlayerHp = 10;
         Reset = false;
         sword.SetActive(false);
@@ -79,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
         if(transform.position.y < -10.0f)
         {
+            
             Reset = true;
             Death.SetActive(true);
             Main.SetActive(false);
@@ -107,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        audioSource.PlayOneShot(jump);
         Rigidbody2D.AddForce(Vector2.up * jumpPower);
         animator.SetTrigger("Jump");
 
@@ -127,8 +140,19 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        
+        float random = Random.value; //0から1の値をランダムに作る
         animator.SetTrigger("Attack");
+        if (random <= 0.5f)
+        {
+            //音鳴らす処理
+            audioSource.PlayOneShot(Attack1);
+        }
+        else
+        {
+            //音鳴らす処理
+            audioSource.PlayOneShot(Attack2);
+
+        }
     }
     void Setting()
     {
@@ -150,6 +174,7 @@ public class PlayerController : MonoBehaviour
                 Muteki = true;
                 if (Muteki == true)
                 {
+                    audioSource.PlayOneShot(damage);
                     animator.SetTrigger("Damage");
                     Damage.SetActive(true);
                     Main.SetActive(false);

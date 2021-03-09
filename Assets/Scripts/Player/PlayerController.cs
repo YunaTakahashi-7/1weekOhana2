@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip Attack1;
     public AudioClip Attack2;
     public AudioClip damage;
-    //public AudioClip gameover;
+    public AudioClip gameover;
     public AudioClip jump;
 
 
@@ -118,14 +118,7 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D.velocity = new Vector2(speed, Rigidbody2D.velocity.y);
     }
 
-    void PlayerDeathSE()
-    {
-        if (transform.position.y < -8.0f)
-        {
-            //audioSource.PlayOneShot(gameover);
-        }
-
-    }
+    
 
     void Jump()
     {
@@ -196,6 +189,7 @@ public class PlayerController : MonoBehaviour
 
             if (PlayerHp == 0)
             {
+                // audioSource.PlayOneShot(gameover);
                 Death.SetActive(true);
                 Main.SetActive(false);
                 Reset = true;

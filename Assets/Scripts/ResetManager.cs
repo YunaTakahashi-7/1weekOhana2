@@ -8,27 +8,32 @@ public class ResetManager : MonoBehaviour
 {
     public GameObject gameOverText;
     AudioSource audioSource;
-    public AudioClip gameover;
-
+    public AudioClip bbbbb;
+    bool isGameOver;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         gameOverText.SetActive(false);
+        isGameOver = false;
     }
 
     void Update()
     {
-        if (PlayerController.Reset)
+
+        if (PlayerController.Reset && isGameOver == false)
         {
-            AudioSource.PlayClipAtPoint(gameover, transform.position);
+            audioSource.PlayOneShot(bbbbb);
+            isGameOver = true;
             gameOverText.SetActive(true);
+            
 
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Space)&& isGameOver == true)
+        {
+            SceneManager.LoadScene("GameScene");
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene("GameScene");
-
-            }
         }
     }
+    
 }

@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class SurimuScripts : MonoBehaviour
 {
     [SerializeField] LayerMask blockLayer;
-
-    AudioSource audioSource;
-    public AudioClip monsterDamage;
-
-    public int EnemyHp = 10;
+    public int EnemyHp = 3;
     public GameObject Zangeki;
     public enum DIRECTION_TYPE
     {
@@ -23,14 +19,15 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         direction = DIRECTION_TYPE.LEFT;
     }
 
     private void Update()
     {
-        if(!IsGround())
+        transform.position += new Vector3(0, 0.05f, 0);
+
+        if (!IsGround())
         {
             ChangeDirection();
         }
@@ -72,12 +69,8 @@ public class EnemyManager : MonoBehaviour
             EnemyHp--;
             if (EnemyHp == 0)
             {
-                //audioSource.PlayOneShot(monsterDamage);
-                //Instantiate(monsterDamage, transform.position, transform.rotation);
                 Destroy(this.gameObject);
                 // 爆破
-                //this.gameObject.SetActive(false);
-                //transform.position = new Vector3(0, 10, 0);
             }
         }
 
@@ -85,9 +78,9 @@ public class EnemyManager : MonoBehaviour
     bool IsGround()
     {
         Vector3 startVec = transform.position + transform.right * 0.5f * transform.localScale.x;
-        Vector3 endVec = startVec - transform.up * 0.5f;
+        Vector3 endVec = startVec - transform.up * 5f;
         Debug.DrawLine(startVec, endVec);
-        return Physics2D.Linecast(startVec,endVec, blockLayer);
+        return Physics2D.Linecast(startVec, endVec, blockLayer);
     }
 
     void ChangeDirection()

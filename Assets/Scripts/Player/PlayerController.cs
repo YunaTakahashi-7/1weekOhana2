@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             Attack();
         }
 
-        if(transform.position.y < -10.0f)
+        if(transform.position.y < -15.0f)
         {
             
             Reset = true;
@@ -192,6 +192,7 @@ public class PlayerController : MonoBehaviour
                 // audioSource.PlayOneShot(gameover);
                 Death.SetActive(true);
                 Main.SetActive(false);
+                Damage.SetActive(false);
                 Reset = true;
                 Destroy(this.gameObject); // gameover処理かく
 

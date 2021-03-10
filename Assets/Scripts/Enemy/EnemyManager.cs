@@ -6,6 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] LayerMask blockLayer;
 
+
     AudioSource audioSource;
     public AudioClip monsterDamage;
 
@@ -23,6 +24,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+
         audioSource = GetComponent<AudioSource>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         direction = DIRECTION_TYPE.LEFT;

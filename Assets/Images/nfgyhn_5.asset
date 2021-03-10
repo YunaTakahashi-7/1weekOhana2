@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Ground2
+  m_Name: nfgyhn_5
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -5082612825143817097, guid: 1988df030b288f44d8220a11e7df2621,
     type: 3}

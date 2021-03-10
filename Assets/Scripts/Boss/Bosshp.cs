@@ -12,9 +12,13 @@ public class Bosshp : MonoBehaviour
 
     //public GameObject Expro; //爆破エフェクト
     private bool bakuha = true;
+
+    public GameObject movie;
+    public GameObject ending;
     
     void Start()
     {
+        movie.SetActive(false);
         halfhp = bosshp / 2;
         renderer = gameObject.GetComponent<SpriteRenderer>(); //点滅用
     }

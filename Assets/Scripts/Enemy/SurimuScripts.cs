@@ -5,6 +5,10 @@ using UnityEngine;
 public class SurimuScripts : MonoBehaviour
 {
     [SerializeField] LayerMask blockLayer;
+
+    AudioSource audioSource;
+    public AudioClip monsterDamage;
+
     public int EnemyHp = 3;
     public GameObject Zangeki;
     public enum DIRECTION_TYPE
@@ -19,13 +23,14 @@ public class SurimuScripts : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         direction = DIRECTION_TYPE.LEFT;
     }
 
     private void Update()
     {
-        transform.position += new Vector3(0, 0.05f, 0);
+        transform.position += new Vector3(0, 0.04f, 0);
 
         if (!IsGround())
         {
@@ -63,6 +68,8 @@ public class SurimuScripts : MonoBehaviour
 
         if (collision.CompareTag("Sword") == true)
         {
+            audioSource.PlayOneShot(monsterDamage);
+            StartCoroutine("Change");
             Instantiate(Zangeki, transform.position, transform.rotation);
             transform.position += new Vector3(0.3f, 0.3f, 0);
 
@@ -93,6 +100,11 @@ public class SurimuScripts : MonoBehaviour
         {
             direction = DIRECTION_TYPE.RIGHT;
         }
+    }
+    IEnumerator Change()
+    {
+        yield return new WaitForSeconds(0.5f);
+        direction = DIRECTION_TYPE.LEFT; // ダメージ受けたら左向く
     }
 
 

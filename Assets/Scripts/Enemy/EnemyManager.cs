@@ -68,18 +68,16 @@ public class EnemyManager : MonoBehaviour
 
         if (collision.CompareTag("Sword") == true)
         {
+            audioSource.PlayOneShot(monsterDamage);
             Instantiate(Zangeki, transform.position, transform.rotation);
+            StartCoroutine("Change");
             transform.position += new Vector3(0.3f, 0.3f, 0);
 
             EnemyHp--;
             if (EnemyHp == 0)
             {
-                //audioSource.PlayOneShot(monsterDamage);
-                //Instantiate(monsterDamage, transform.position, transform.rotation);
                 Destroy(this.gameObject);
                 // 爆破
-                //this.gameObject.SetActive(false);
-                //transform.position = new Vector3(0, 10, 0);
             }
         }
 
@@ -102,6 +100,12 @@ public class EnemyManager : MonoBehaviour
         {
             direction = DIRECTION_TYPE.RIGHT;
         }
+    }
+
+    IEnumerator Change()
+    {
+        yield return new WaitForSeconds(0.5f);
+        direction = DIRECTION_TYPE.LEFT; // ダメージ受けたら左向く
     }
 
 

@@ -8,11 +8,11 @@ using DG.Tweening;
 
 public class BossSceneChange : MonoBehaviour
 {
+    public GameObject Main;
     public CanvasGroup canvasGroup;
 
     private void Start()
     {
-        FadeOutToIn();
     }
 
     public void FadeOut()
@@ -43,9 +43,15 @@ public class BossSceneChange : MonoBehaviour
 
         if (collision.CompareTag("Player") == true)
         {
-            SceneManager.LoadScene("BossScene");
+            Main.SetActive(false);
+            StartCoroutine("WaitForIt");
         }
-
+    }
+    IEnumerator WaitForIt()
+    {
+        FadeOutToIn();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("BossScene");
 
     }
 }

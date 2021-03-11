@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Damage;
     public static int PlayerHp = 10;
     bool Muteki;
+    bool NoSe;
     [SerializeField] LayerMask blockLayer;
     [SerializeField] GameObject[] Damages; // 揺らすオブジェクト
     [SerializeField] float duration;            // 揺れる時間
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerHp = 10;
         Reset = false;
+        NoSe = true;
         sword.SetActive(false);
         Death.SetActive(false);
         Damage.SetActive(false);
@@ -177,7 +179,13 @@ public class PlayerController : MonoBehaviour
                 Muteki = true;
                 if (Muteki == true)
                 {
-                    audioSource.PlayOneShot(damage);
+                    if(NoSe == true)
+                    {
+                        audioSource.PlayOneShot(damage);
+                        NoSe = false;
+                        StartCoroutine("NoSeTime");
+
+                    }
                     animator.SetTrigger("Damage");
                     Damage.SetActive(true);
                     Main.SetActive(false);
@@ -186,7 +194,6 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine("MutekiTime");
                 }
             }
-
             if (PlayerHp == 0)
             {
                 // audioSource.PlayOneShot(gameover);
@@ -195,9 +202,7 @@ public class PlayerController : MonoBehaviour
                 Damage.SetActive(false);
                 Reset = true;
                 Destroy(this.gameObject); // gameover処理かく
-
                 // gameover
-                
                 /*if (SceneToGame.activeSelf){
                     SceneManager.LoadScene ("GameScene");
                 }else{
@@ -206,7 +211,6 @@ public class PlayerController : MonoBehaviour
                 */
             }
         }
-
     }
     IEnumerator MutekiTime()
     {
@@ -217,6 +221,13 @@ public class PlayerController : MonoBehaviour
         GetComponent<Collider2D>().enabled = true;
 
         Muteki = false;
+
+    }
+    IEnumerator NoSeTime()
+    {
+        // 1秒間処理を止める
+        yield return new WaitForSeconds(0.5f);
+        NoSe = true;
 
     }
 

@@ -7,10 +7,13 @@ public class GameOverBoss : MonoBehaviour
 {
     private bool GameOverFrag = false;
     public GameObject GameOverText;
+
+    AudioSource audioSource;
+    public AudioClip bbbbb;
     
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -19,6 +22,7 @@ public class GameOverBoss : MonoBehaviour
         {
             if(!GameOverFrag)
             {
+                audioSource.PlayOneShot(bbbbb);
                 GameOverText.SetActive(true);
                 GameOverFrag = true;
             }

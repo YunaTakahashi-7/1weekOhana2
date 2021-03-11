@@ -11,22 +11,19 @@ public class maker : MonoBehaviour
 		private bool goball = false;
 		public float speed; 
 
-		void Start ()
+		void OnEnable()
 		{
 				StartCoroutine (MakeBall ());
 		}
 		
-		//ボールを生成するメソッド
-		IEnumerator MakeBall ()
+	  IEnumerator MakeBall ()
 		{
 				while (true) {
 						yield return new WaitForSeconds (pace);
-						//InstantiateをgetBallに書き換え
-						//Instantiate (ball, gameObject.transform.position, Quaternion.identity);
-						if(goball){
+						if(goball)
+						{
 							ObjectPool.instance.getBall ();
 						}
-						
 				}
 		}
 
@@ -34,6 +31,7 @@ public class maker : MonoBehaviour
 		{
 			if (Input.GetMouseButton(0)){
 				goball = true;
+				//ObjectPool.getBall();
 			}else{
 				goball = false;
 			}

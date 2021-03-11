@@ -11,7 +11,16 @@ public class BossCamera : MonoBehaviour
     {
         audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.enabled = false;
-        StartCoroutine("AudioOn");
+
+        int resultScore = PlayerPrefs.GetInt("SCORE");
+        if(resultScore == 20)
+        {
+            audioSource.enabled = true;
+        }else
+        {
+            StartCoroutine("AudioOn");
+        }
+        
     }
     public void Update()
     {

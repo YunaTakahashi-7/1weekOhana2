@@ -7,6 +7,8 @@ public class SceneChange : MonoBehaviour
 {
     void Start()
     {
+        PlayerPrefs.SetInt("SCORE", 0);
+        PlayerPrefs.Save ();
         SceneManager.LoadScene ("TitleScene");
     }
 

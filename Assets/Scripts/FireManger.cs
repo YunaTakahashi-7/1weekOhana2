@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShimazuDossun : MonoBehaviour
+public class FireManger : MonoBehaviour
 {
-    AudioSource audioSource;
-    public AudioClip DossunSE;
     public GameObject shimazuD;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         shimazuD.SetActive(false);
 
     }
@@ -23,18 +20,9 @@ public class ShimazuDossun : MonoBehaviour
         if (other.CompareTag("Player") == true)
         {
             shimazuD.SetActive(true);
-            StartCoroutine("DosuunSEPlay");
-            Destroy(shimazuD, 2f);
 
 
         }
-
-    }
-
-    IEnumerator DosuunSEPlay()
-    {
-        yield return new WaitForSeconds(0.8f);
-        audioSource.PlayOneShot(DossunSE);
 
     }
 

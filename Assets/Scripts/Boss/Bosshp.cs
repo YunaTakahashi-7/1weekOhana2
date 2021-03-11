@@ -77,7 +77,7 @@ public class Bosshp : MonoBehaviour
     IEnumerator WaitDeath()
     {
         yield return new WaitForSeconds(2);
-        Expro.SetActive(false);
+        Expro.SetActive(true);
         audioSource.enabled = true;
         yield return new WaitForSeconds(2);
         ending.SetActive(true);

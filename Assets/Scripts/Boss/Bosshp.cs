@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bosshp : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class Bosshp : MonoBehaviour
     private SpriteRenderer renderer;　//点滅用
     private bool on_damage = false; //無敵タイム用
 
-    //public GameObject Expro; //爆破エフェクト
+    public GameObject Expro; //爆破エフェクト
     private bool bakuha = true;
+    AudioSource audioSource;
 
     public GameObject movie;
     public GameObject ending;
@@ -21,6 +23,7 @@ public class Bosshp : MonoBehaviour
         movie.SetActive(false);
         halfhp = bosshp / 2;
         renderer = gameObject.GetComponent<SpriteRenderer>(); //点滅用
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,8 +31,9 @@ public class Bosshp : MonoBehaviour
         if(bosshp == 0){
             //爆発エフェクト
             if(bakuha){
-                //Instantiate(Expro, transform.position, transform.rotation);
+                Instantiate(Expro, transform.position, transform.rotation);
                 Debug.Log("しまづさんを倒した");
+                StartCoroutine("WaitDeath");
                 bakuha = false;
             }
         }
@@ -68,5 +72,15 @@ public class Bosshp : MonoBehaviour
         // １秒後ダメージフラグをfalseにして点滅を戻す
         on_damage = false;
         renderer.color = new Color(1f,1f,1f,1f);
+    }
+
+    IEnumerator WaitDeath()
+    {
+        yield return new WaitForSeconds(2);
+        Expro.SetActive(false);
+        audioSource.enabled = true;
+        yield return new WaitForSeconds(2);
+        ending.SetActive(true);
+        // gameObject.SetActive(false);
     }
 }

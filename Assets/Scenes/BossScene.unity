@@ -804,8 +804,8 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowToolkit: 1
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef759805bffe64b4cbba59fc0ecaf0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ending: {fileID: 321695806}
 --- !u!1 &129331794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1563,10 @@ PlayableDirector:
     value: {fileID: 915204454}
   - key: {fileID: 8693145137867459474, guid: a929ee70c260d45a19cc772a744a66be, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -2355120349012375782, guid: a929ee70c260d45a19cc772a744a66be, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5819401628353099824, guid: a929ee70c260d45a19cc772a744a66be, type: 2}
+    value: {fileID: 1571332817}
   m_ExposedReferences:
     m_References:
     - f52cb0bc7123d4691b30a412ddeb6496: {fileID: 74176043}
@@ -7991,6 +7996,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732541409012486215, guid: 69f38682fde2d4e518c1fed73f392d8f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732541409012486215, guid: 69f38682fde2d4e518c1fed73f392d8f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6732541409012486215, guid: 69f38682fde2d4e518c1fed73f392d8f,
         type: 3}

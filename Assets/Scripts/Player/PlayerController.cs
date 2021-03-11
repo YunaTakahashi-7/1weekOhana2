@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Enemy") == true)
         {
             PlayerHp--;
+            Debug.Log("PlayerHp" + PlayerHp);
             if (PlayerHp > 0)
             {
                 Muteki = true;

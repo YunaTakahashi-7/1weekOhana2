@@ -20,7 +20,7 @@ public class Bosshp : MonoBehaviour
     
     void Start()
     {
-        movie.SetActive(false);
+        //movie.SetActive(false);
         halfhp = bosshp / 2;
         renderer = gameObject.GetComponent<SpriteRenderer>(); //点滅用
         audioSource = GetComponent<AudioSource>();

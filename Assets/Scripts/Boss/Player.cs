@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     public static bool onright;
  
     protected PlayerGauge playerGauge;
+
+    private void OnEnable()
+    {
+        life = 10;
+    }
  
     private void Start()
     {
@@ -30,7 +35,10 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         playerGauge.GaugeReduction(1.0f);
-        life -= 1.0f;
+        // life -= 1.0f;
+        life = PlayerController.PlayerHp;
+        Debug.Log("life" + life);
+        Debug.Log("PlayerHp,lifeのあと" + PlayerController.PlayerHp);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

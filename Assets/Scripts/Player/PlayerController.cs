@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject SceneToGame;
 
+    private void OnEnable()
+    {
+        PlayerHp = 10;
+    }
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();

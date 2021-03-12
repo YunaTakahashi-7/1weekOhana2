@@ -17,6 +17,11 @@ public class Bosshp : MonoBehaviour
 
     public GameObject movie;
     public GameObject ending;
+
+    void OnEnable()
+    {
+        bosshp = 20;
+    }
     
     void Start()
     {

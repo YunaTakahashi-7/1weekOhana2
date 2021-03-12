@@ -13,14 +13,14 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        life = 10;
+        life = PlayerController.PlayerHp;
     }
  
     private void Start()
     {
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this);
-        life = PlayerController.PlayerHp;
+        // life = PlayerController.PlayerHp;
     }
 
     private void Update()

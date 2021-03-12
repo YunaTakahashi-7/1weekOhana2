@@ -11,16 +11,12 @@ public class Player : MonoBehaviour
  
     protected PlayerGauge playerGauge;
 
-    private void OnEnable()
-    {
-        life = PlayerController.PlayerHp;
-    }
  
     private void Start()
     {
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this);
-        // life = PlayerController.PlayerHp;
+        life = PlayerController.PlayerHp;
     }
 
     private void Update()

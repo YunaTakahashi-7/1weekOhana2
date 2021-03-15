@@ -57,7 +57,7 @@ public class ObjectPool : MonoBehaviour
 
 				//使用できるものが無かった場合
 				//新たに生成して、リストに追加して返す
-				GameObject newObj = (GameObject)Instantiate (ballPrefab, originalPos, originalRotation);
+				GameObject newObj = (GameObject)Instantiate (ballPrefab, bulletpos.transform.position, bulletpos.transform.rotation);
 				//ボールに番号をつける
 				newObj.gameObject.name = "ball" + ballNum.ToString ();
 				ballNum++;
